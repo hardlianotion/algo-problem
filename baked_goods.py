@@ -50,6 +50,7 @@ def is_stale(total_days, sellers):
 # precondition
 # total_days > 0
 # sellers = [(t0, p0), ..., (tn, pn)], t0 < ... < tn, pi >= 0
+# NOTE - we do not assume that total_days > ti.
 def calculate_purchasing_plan(total_days, sellers):
     # we have fewer days to go than loaves of bread,
     # don't have to buy
@@ -60,9 +61,9 @@ def calculate_purchasing_plan(total_days, sellers):
         return None
 
     num_sales = len(sellers)
+    # total_days may not be at the end of the sellers schedule ...
     intervals = [[dt, min(dt + 30, total_days)] for (dt, price) in sellers]
 
-    # FIXME don't forget to ensure that any intervals more than 30 days out are stale.
     for i in range(num_sales):
         (dt, price_i) = sellers[i]
         interval = intervals[i]
@@ -77,7 +78,5 @@ def calculate_purchasing_plan(total_days, sellers):
                 else:
                     intervals[j][0] = intervals[i][1]
                 j += 1
-        # FIXME consider putting the total_days ate in as interval
-        # and using this in the pricing.
 
     return [length(interval) for interval in intervals]
