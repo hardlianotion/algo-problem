@@ -75,6 +75,7 @@ def calculate_purchasing_plan(total_days, sellers):
                 price_j = sellers[j][1]
                 if price_j < price_i:
                     intervals[i][1] = intervals[j][0]
+                    break
                 else:
                     intervals[j][0] = intervals[i][1]
                 j += 1
