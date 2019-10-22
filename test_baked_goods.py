@@ -54,6 +54,20 @@ class TestPlan(unittest.TestCase):
 
         self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
 
+    def test_all_different_inc_up_and_down_price_intervals(self):
+        total_days = 60
+        sellers = [(10, 200), (25, 350), (30, 250), (50, 400)]
+        plan = [30, 0, 20, 0]
+
+        self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
+
+    def test_all_different_dec_up_and_down_price_intervals(self):
+        total_days = 60
+        sellers = [(10, 200), (25, 350), (30, 150), (50, 300)]
+        plan = [20, 0, 30, 0]
+
+        self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
+
     def test_flat_price_intervals(self):
         total_days = 60
         sellers = [(10, 200), (25, 200), (30, 200), (50, 200)]
