@@ -1,0 +1,6 @@
+.tags
+.metals
+*.swp
+*.pyc
+.idea
+
