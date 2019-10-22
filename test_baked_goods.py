@@ -24,7 +24,7 @@ class TestPlan(unittest.TestCase):
         total_days = 9
         sellers = [(12, 200), (15, 30)]
 
-        self.assertEqual([0,0], calculate_purchasing_plan(total_days, sellers))
+        self.assertEqual([0, 0], calculate_purchasing_plan(total_days, sellers))
 
     def test_replicate_documented_example(self):
         total_days = 60
@@ -46,6 +46,21 @@ class TestPlan(unittest.TestCase):
         plan = [15, 5, 20, 10]
 
         self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
+
+    def test_up_and_down_price_intervals(self):
+        total_days = 60
+        sellers = [(10, 200), (25, 350), (30, 200), (50, 350)]
+        plan = [30, 0, 20, 0]
+
+        self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
+
+    def test_flat_price_intervals(self):
+        total_days = 60
+        sellers = [(10, 200), (25, 200), (30, 200), (50, 200)]
+        plan = [30, 15, 5, 0]
+
+        self.assertEqual(plan, calculate_purchasing_plan(total_days, sellers))
+
 
 if __name__ == "__main__":
     unittest.main()
