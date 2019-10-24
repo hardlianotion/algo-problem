@@ -4,8 +4,6 @@ from baked_goods import calculate_purchasing_plan
 
 class TestPlan(unittest.TestCase):
 
-    # def impl(total_days, sellers, output):
-
     def test_initial_inventory_of_10_loaves(self):
         total_days = 30
         # initial inventory should not last until first seller arrival
